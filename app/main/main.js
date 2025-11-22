@@ -36,7 +36,11 @@ try {
 }
 
 app.on('window-all-closed', () => {
-    if (process.platform !== 'darwin') app.quit();
+    if (process.platform !== 'darwin') {
+        app.quit();
+    }else {
+        // On macOS, it's common for applications to stay open until the user explicitly quits
+    }
 });
 
 app.on('activate', () => {
