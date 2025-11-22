@@ -1,0 +1,27 @@
+{
+  "name": "todo-list-app",
+  "version": "1.0.0",
+  "description": "Yes I am learning electron",
+  "main": "main.js",
+  "scripts": {
+    "dev:renderer": "cd app/renderer && vite",
+    "dev:electron": "NODE_ENV=development electron ./app/main/main.js",
+    "electron:dev": "concurrently \"cd app/renderer && vite\" \"NODE_ENV=development electron ./app/main/main.js\"",
+    "build": "cd app/renderer && vite build",
+    "start:prod": "NODE_ENV=production electron .",
+    "start": "electron ."
+  },
+  "author": "DnullP",
+  "license": "MIT",
+  "dependencies": {
+    "electron": "^39.2.3",
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react": "^5.1.1",
+    "concurrently": "^9.2.1",
+    "cross-env": "^10.1.0",
+    "vite": "^7.2.4"
+  }
+}
