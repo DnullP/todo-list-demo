@@ -26,6 +26,15 @@ function createWindow() {
 
 app.whenReady().then(createWindow);
 
+// Load IPC handlers and services
+try {
+    require(path.join(__dirname, 'ipc', 'taskHandlers.js'));
+    const scheduler = require(path.join(__dirname, 'services', 'schedulerService.js'));
+    scheduler.start();
+} catch (e) {
+    console.warn('Failed to load services/ipc:', e);
+}
+
 app.on('window-all-closed', () => {
     if (process.platform !== 'darwin') app.quit();
 });
