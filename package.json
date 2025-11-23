@@ -2,28 +2,60 @@
   "name": "todo-list-app",
   "version": "1.0.0",
   "description": "Yes I am learning electron",
-  "main": "main.js",
+  "main": "app/main/main.js",
   "scripts": {
     "dev:renderer": "cd app/renderer && vite",
     "dev:electron": "NODE_ENV=development electron ./app/main/main.js",
     "electron:dev": "concurrently \"cd app/renderer && vite\" \"NODE_ENV=development electron ./app/main/main.js\"",
     "build": "cd app/renderer && vite build",
+    "package:dir": "npm run build && electron-builder --dir",
+    "package": "npm run build && electron-builder",
+    "dist": "npm run build && electron-builder --publish never",
     "start:prod": "NODE_ENV=production electron .",
     "start": "electron ."
   },
   "author": "DnullP",
   "license": "MIT",
   "dependencies": {
-    "electron": "^39.2.3",
     "react": "^19.2.0",
     "react-dom": "^19.2.0",
     "uuid": "^9.0.0",
     "zustand": "^4.4.0"
   },
   "devDependencies": {
+    "electron": "^39.2.3",
     "@vitejs/plugin-react": "^5.1.1",
     "concurrently": "^9.2.1",
     "cross-env": "^10.1.0",
-    "vite": "^7.2.4"
+    "vite": "^7.2.4",
+    "electron-builder": "^24.6.0"
+  },
+  "build": {
+    "appId": "com.yourcompany.todo",
+    "productName": "Good Tasks",
+    "directories": {
+      "output": "dist_electron",
+      "app": "./"
+    },
+    "files": [
+      "app/**/*",
+      "package.json"
+    ],
+    "mac": {
+      "target": [
+        "dmg",
+        "zip"
+      ]
+    },
+    "win": {
+      "target": [
+        "nsis"
+      ]
+    },
+    "linux": {
+      "target": [
+        "AppImage"
+      ]
+    }
   }
 }
